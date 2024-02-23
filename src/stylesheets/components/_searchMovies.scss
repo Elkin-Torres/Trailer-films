@@ -1,0 +1,15 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  gap: 2rem;
+
+  &__form {
+    width: 70%;
+    margin: 0 auto 1.5rem;
+  }
+
+  & h1 {
+    text-align: center;
+  }
+}
