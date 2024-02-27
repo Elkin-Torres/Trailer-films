@@ -1,3 +1,5 @@
+@use "../variables" as v;
+
 .search {
   display: flex;
   flex-direction: column;
@@ -9,7 +11,24 @@
     margin: 0 auto 1.5rem;
   }
 
+  &__btn {
+    padding: 0.2rem;
+    border-radius: 4px;
+    background-color: v.$second-bg-color;
+    color: v.$second-color;
+  }
+
   & h1 {
     text-align: center;
+  }
+
+  &__input {
+    padding: 0.1rem;
+    border-radius: 4px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid v.$second-bg-color;
+    }
   }
 }

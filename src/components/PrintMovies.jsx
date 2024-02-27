@@ -19,7 +19,13 @@ const PrintMovies = () => {
             <div> {userContext.movies[0].overview} </div>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="movie-cont__error">
+          <h1>
+            {userContext.error}
+          </h1>
+        </div>
+      )}
       <div className="movie-cont__list">
         {userContext.movies.map((movie) => (
           <div key={movie.id} className="movie-cont__print">
@@ -27,8 +33,18 @@ const PrintMovies = () => {
               <img src={`${userContext.img + movie.poster_path}`} />
             </picture>
             <div className="movie-cont__options">
-              <button className="movie-cont__data">Data sheet</button>
-              <button className="movie-cont__trailer" onClick={()=> userContext.callTrailer(movie.id)}>Trailer</button>
+              <button
+                className="movie-cont__data"
+                onClick={() => userContext.dataSheet(movie.id)}
+              >
+                Data sheet
+              </button>
+              <button
+                className="movie-cont__trailer"
+                onClick={() => userContext.callTrailer(movie.id)}
+              >
+                Trailer
+              </button>
             </div>
           </div>
         ))}

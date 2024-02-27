@@ -9,7 +9,7 @@ const Trailer = () => {
   return (
     <>
       {dataTrailer && (
-        <div className="trailer">
+        <div className="trailer modal">
           <YouTube
             className="trailer__video"
             videoId={dataTrailer.key}
@@ -18,7 +18,7 @@ const Trailer = () => {
               height: "100%",
               playerVars: {
                 autoplay: 1,
-                controls: 0,
+                controls: 1,
                 cc_load_policy: 0,
                 fs: 0,
                 iv_load_policy: 0,
@@ -29,11 +29,12 @@ const Trailer = () => {
             }}
           />
           <button
-            className="trailer__btn"
+            className="modal__btn"
             onClick={() => userContext.callTrailer()}
           >
             Close
           </button>
+          {console.log(dataTrailer.key)}
         </div>
       )}
     </>
