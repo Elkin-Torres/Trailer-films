@@ -1,4 +1,4 @@
-import { CALL_MOVIES, SEARCH_DATA, HIDE_DATA, DATA_SHEET, DATA_SHEET_CLOSE, ERROR } from "../types";
+import { CALL_MOVIES, SEARCH_DATA, HIDE_DATA, DATA_SHEET, DATA_SHEET_CLOSE, ERROR} from "../types";
 
 
 const UserReducer = (state, action) => {

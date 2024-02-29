@@ -34,7 +34,6 @@ const Trailer = () => {
           >
             Close
           </button>
-          {console.log(dataTrailer.key)}
         </div>
       )}
     </>

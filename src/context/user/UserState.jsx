@@ -22,9 +22,8 @@ const UserState = (props) => {
     trailer: false,
     error:
       "nothing was found with the registered information, try another title!",
+    numberPages: null,
   };
-
-  const root = document.querySelector("#root");
 
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
@@ -80,7 +79,6 @@ const UserState = (props) => {
           },
         });
 
-        console.log(results);
         const setData = results.find(
           (movie) => movie.name === "Official Trailer"
         );
@@ -90,10 +88,10 @@ const UserState = (props) => {
           payload: setData ? setData : results[0],
         });
 
-        root.style.position = "absolute";
+        //root.style.position = "absolute";
       } else {
         dispatch({ type: HIDE_DATA });
-        root.style.position = "static";
+        //root.style.position = "static";
       }
     } catch (error) {
       console.log(error);
@@ -102,23 +100,23 @@ const UserState = (props) => {
 
   //to obtain the technical sheet of the film
   const dataSheet = async (id) => {
-try {
-  if (id) {
-    const { data } = await axios.get(`${initialState.url}/movie/${id}`, {
-      params: {
-        api_key: "563406ef7f84ace79673186b038d5435",
-      },
-    });
+    try {
+      if (id) {
+        const { data } = await axios.get(`${initialState.url}/movie/${id}`, {
+          params: {
+            api_key: "563406ef7f84ace79673186b038d5435",
+          },
+        });
 
-    dispatch({ type: DATA_SHEET, payload: data });
-    root.style.position = "absolute";
-  } else {
-    dispatch({ type: DATA_SHEET_CLOSE });
-    root.style.position = "static";
-  }
-} catch (error) {
-  console.log(error);
-}
+        dispatch({ type: DATA_SHEET, payload: data });
+        //root.style.position = "absolute";
+      } else {
+        dispatch({ type: DATA_SHEET_CLOSE });
+        //root.style.position = "static";
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

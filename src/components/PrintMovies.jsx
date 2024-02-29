@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import UserContext from "../context/user/UserContext";
+import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const PrintMovies = () => {
   const userContext = useContext(UserContext);
@@ -7,23 +9,36 @@ const PrintMovies = () => {
   return (
     <div className="movie-cont">
       {userContext.movies.length ? (
-        <div
-          className="movie-cont__bgimg"
-          style={{
-            backgroundImage: `url("${userContext.img}${userContext.movies[0].backdrop_path}")`,
-          }}
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar]}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
         >
-          <div className="movie-cont__bginfo">
-            <button className="movie-cont__btnTrailer">Play trailer</button>
-            <h2> {userContext.movies[0].title} </h2>
-            <div> {userContext.movies[0].overview} </div>
-          </div>
-        </div>
+          {userContext.movies.map((movie) => (
+            <SwiperSlide
+              key={movie.id}
+              className="movie-cont__bgimg"
+              style={{
+                backgroundImage: `url("${userContext.img}${movie.backdrop_path}")`,
+              }}
+            >
+              <div className="movie-cont__bginfo">
+                <button
+                  className="movie-cont__btnTrailer"
+                  onClick={() => userContext.callTrailer(movie.id)}
+                >
+                  Play trailer
+                </button>
+                <h2> {movie.title} </h2>
+                <div> {movie.overview} </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       ) : (
         <div className="movie-cont__error">
-          <h1>
-            {userContext.error}
-          </h1>
+          <h1>{userContext.error}</h1>
         </div>
       )}
       <div className="movie-cont__list">
