@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base:"https://elkin-Torres.github.io/Trailer-films/"
+  base:"https://elkin-Torres.github.io/Trailer-films/",
 })
