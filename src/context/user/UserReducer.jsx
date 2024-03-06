@@ -8,22 +8,27 @@ const UserReducer = (state, action) => {
     case CALL_MOVIES:
       return {
         ...state,
-        movies: payload
+        movies: payload.results,
+        requestMovie: payload.request,
+        numberPages: [payload.total_pages,...state.numberPages],
+        actualPage: payload.numberPage
       };
     case SEARCH_DATA:
       return{
         ...state,
-        selectedMovie:payload
+        selectedMovie:payload,
+        notTrailer: true
       }
     case HIDE_DATA:
       return{
         ...state,
-        selectedMovie:null
+        selectedMovie:null,
+        notTrailer: false
       };
     case DATA_SHEET:
       return{
         ...state,
-        dataMovie:payload
+        dataMovie:payload,
       }
     case DATA_SHEET_CLOSE:
       return{

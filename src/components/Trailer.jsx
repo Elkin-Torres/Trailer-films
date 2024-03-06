@@ -36,6 +36,22 @@ const Trailer = () => {
           </button>
         </div>
       )}
+      {!dataTrailer && userContext.notTrailer ? (
+        <div className="modal">
+          <div className="dataSheet__scheme">
+            <h3>
+              The trailer for this movie is not available, try another one.
+              Sorry for the inconvenience :c
+            </h3>
+          </div>
+          <button
+            className="modal__btn"
+            onClick={() => userContext.callTrailer()}
+          >
+            Close
+          </button>
+        </div>
+      ) : null}
     </>
   );
 };

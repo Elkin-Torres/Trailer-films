@@ -15,33 +15,42 @@ import PropTypes from "prop-types";
 const UserState = (props) => {
   const initialState = {
     movies: [],
+    requestMovie: null,
     selectedMovie: null,
+    notTrailer: false,
     dataMovie: null,
     url: "https://api.themoviedb.org/3",
     img: "https://image.tmdb.org/t/p/original",
     trailer: false,
     error:
       "nothing was found with the registered information, try another title!",
-    numberPages: null,
+    numberPages:[],
+    actualPage: 1,
   };
 
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   //to get movie information
-  const callMovies = async (request) => {
+  const callMovies = async (request, number) => {
     try {
       const type = request ? "search" : "discover";
+      const numberPage = number ? number : 1;
 
       const {
-        data: { results },
+        data: { results, total_pages },
       } = await axios.get(`${initialState.url}/${type}/movie`, {
         params: {
           api_key: "563406ef7f84ace79673186b038d5435",
           query: request,
+          page: numberPage,
         },
       });
 
-      dispatch({ type: CALL_MOVIES, payload: results });
+      dispatch({
+        type: CALL_MOVIES,
+        payload: { results, total_pages, numberPage, request },
+      });
+
     } catch (error) {
       if (error.response) {
         console.log(error);
@@ -68,12 +77,12 @@ const UserState = (props) => {
   };
 
   //function to obtain the trailer of the selected movie
-  const callTrailer = async (data) => {
+  const callTrailer = async (id) => {
     try {
-      if (data) {
+      if (id) {
         const {
           data: { results },
-        } = await axios.get(`${initialState.url}/movie/${data}/videos`, {
+        } = await axios.get(`${initialState.url}/movie/${id}/videos`, {
           params: {
             api_key: "563406ef7f84ace79673186b038d5435",
           },
@@ -87,11 +96,8 @@ const UserState = (props) => {
           type: SEARCH_DATA,
           payload: setData ? setData : results[0],
         });
-
-        //root.style.position = "absolute";
       } else {
         dispatch({ type: HIDE_DATA });
-        //root.style.position = "static";
       }
     } catch (error) {
       console.log(error);
@@ -109,10 +115,8 @@ const UserState = (props) => {
         });
 
         dispatch({ type: DATA_SHEET, payload: data });
-        //root.style.position = "absolute";
       } else {
         dispatch({ type: DATA_SHEET_CLOSE });
-        //root.style.position = "static";
       }
     } catch (error) {
       console.log(error);
@@ -127,12 +131,16 @@ const UserState = (props) => {
     <UserContext.Provider
       value={{
         movies: state.movies,
+        requestMovie: state.requestMovie,
         selectedMovie: state.selectedMovie,
         url: state.url,
         img: state.img,
         trailer: state.trailer,
         dataMovie: state.dataMovie,
         error: state.error,
+        numberPages: state.numberPages,
+        actualPage: state.actualPage,
+        notTrailer: state.notTrailer,
         callMovies,
         callTrailer,
         dataSheet,

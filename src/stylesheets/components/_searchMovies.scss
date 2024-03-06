@@ -18,6 +18,11 @@
     color: v.$second-color;
   }
 
+  & a {
+    text-decoration: none;
+    color: v.$first-color;
+  }
+
   & h1 {
     text-align: center;
   }

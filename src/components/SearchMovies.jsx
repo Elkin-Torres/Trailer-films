@@ -8,16 +8,19 @@ const SearchMovies = () => {
 
   const searchMovie = (e) => {
     e.preventDefault();
-    userContext.callMovies(userContext.movies);
+    userContext.callMovies(userContext.requestMovie);
   };
 
   return (
     <div className="search">
-      <h1>Your movie trailer website!</h1>
+      <a href="">
+        <h1>Your movie trailer website!</h1>
+      </a>
+
       <form onSubmit={searchMovie} className="search__form">
         <input
           placeholder="escribe una película..."
-          onChange={(e) => (userContext.movies = e.target.value)}
+          onChange={(e) => (userContext.requestMovie = e.target.value)}
           className="search__input"
         />
         <button type="submit" className="search__btn">

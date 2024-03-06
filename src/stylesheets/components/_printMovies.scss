@@ -36,6 +36,27 @@
     border-color: v.$second-color;
   }
 
+  &__numeration-one {
+    margin-top: 3rem;
+    text-align: center;
+    color: v.$second-bg-color;
+  }
+
+  &__numeration-two {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: v.$second-bg-color;
+  }
+
+  &__error {
+    & h1 {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 10rem;
+      text-align: center;
+    }
+  }
+
   &__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -75,12 +96,30 @@
     }
   }
 
-  &__error {
-    & h1 {
-      width: 80%;
-      margin: 0 auto;
-      padding-top: 10rem;
-      text-align: center;
+  &__arrows {
+    & button {
+      position: fixed;
+      top: 50%;
+      border: none;
+      font-size: 3rem;
+      background-color: v.$bg-color-body;
+      color: v.$second-bg-color;
+    }
+
+    & button:hover {
+      transform: scale(1.1);
     }
   }
+
+  &__arrowLeft {
+    left: 2rem;
+  }
+
+  &__arrowRight {
+    right: 2rem;
+  }
+}
+
+.hidden {
+  display: none;
 }
