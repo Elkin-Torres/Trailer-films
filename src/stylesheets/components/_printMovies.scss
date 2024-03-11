@@ -3,19 +3,22 @@
 .movie-cont {
   &__bgimg {
     width: 100%;
-    height: 40rem;
+    height: 48rem;
     background-repeat: no-repeat;
     background-size: cover;
+    // background-position-y: -400px;
   }
 
   &__bginfo {
     display: flex;
     flex-direction: column;
     justify-content: end;
-    width: 70%;
+    align-items: center;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
     gap: 0.8rem;
+    //background-color: v.$first-bg-color;
 
     & h2,
     & div {
@@ -25,6 +28,28 @@
     & div {
       margin-bottom: 0.5rem;
     }
+
+    & picture {
+      position: absolute;
+      top: -50px;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(v.$first-bg-color, transparent);
+    }
+
+    & img {
+      height: 70rem;
+      width: 90%;
+    }
+  }
+
+  &__bgdata {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    position: absolute;
+    bottom: 20px;
+    width: 85%;
   }
 
   &__btnTrailer {
@@ -59,7 +84,7 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     width: 100%;
     height: 100%;
     padding: 2rem 10rem;
@@ -102,7 +127,7 @@
       top: 50%;
       border: none;
       font-size: 3rem;
-      background-color: v.$bg-color-body;
+      background-color: transparent;
       color: v.$second-bg-color;
     }
 
@@ -122,4 +147,54 @@
 
 .hidden {
   display: none;
+}
+
+//Media queries
+
+@media screen and (min-width: 2140px) {
+  .movie-cont__bginfo img {
+    width: 80%;
+  }
+
+  .movie-cont__bgdata {
+    width: 75%;
+  }
+
+  .movie-cont__list {
+    padding: 2rem 20rem;
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .movie-cont__list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .movie-cont__list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .movie-cont__bginfo img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .movie-cont__arrowRight {
+    right: 0.5rem;
+  }
+
+  .movie-cont__bgdata div {
+    display: none;
+  }
+
+  .movie-cont__list {
+    padding: 2rem 6rem;
+  }
+
+  #root {
+    min-width: 480px;
+  }
 }

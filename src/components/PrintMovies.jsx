@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/user/UserContext";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import noAvailabe from "../../public/img/no-available.png";
 
@@ -27,7 +27,7 @@ const PrintMovies = () => {
 
     window.scrollTo({
       behavior: "smooth",
-      top: 0,
+      top: 850,
     });
   };
 
@@ -51,28 +51,47 @@ const PrintMovies = () => {
       {userContext.movies.length ? (
         <div>
           <Swiper
-            modules={[Navigation, Pagination, Scrollbar]}
+            modules={[Navigation, Pagination, Scrollbar, Autoplay]}
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
+            /*             autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }} */
           >
             {userContext.movies.map((movie) => (
               <SwiperSlide
                 key={movie.id}
                 className="movie-cont__bgimg"
-                style={{
-                  backgroundImage: `url("${userContext.img}${movie.backdrop_path}")`,
-                }}
+
+                /*                 style={{
+                  backgroundImage: movie.poster_path
+                    ? `url("${userContext.img + movie.poster_path}")`
+                    : `url("${noAvailabe}")`,
+                }} */
               >
                 <div className="movie-cont__bginfo">
-                  <button
-                    className="movie-cont__btnTrailer"
-                    onClick={() => userContext.callTrailer(movie.id)}
-                  >
-                    Play trailer
-                  </button>
-                  <h2> {movie.title} </h2>
-                  <div> {movie.overview} </div>
+                  <picture>
+                    <img
+                      src={
+                        movie.poster_path
+                          ? `${userContext.img + movie.poster_path}`
+                          : `${noAvailabe}`
+                      }
+                    />
+                  </picture>
+                  <div className="movie-cont__bgdata">
+                    <button
+                      className="movie-cont__btnTrailer"
+                      onClick={() => userContext.callTrailer(movie.id)}
+                    >
+                      Play trailer
+                    </button>
+                    <h2> {movie.title} </h2>
+                    <div> {movie.overview} </div>
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
@@ -132,7 +151,9 @@ const PrintMovies = () => {
         ))}
       </div>
       <div className="movie-cont__numeration-two">
-        <p>{userContext.actualPage} / {userContext.numberPages[0]}</p>
+        <p>
+          {userContext.actualPage} / {userContext.numberPages[0]}
+        </p>
       </div>
     </div>
   );

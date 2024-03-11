@@ -1,0 +1,21 @@
+@use "../variables" as v;
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  background-color: v.$modal-close-btn;
+  color: v.$second-color;
+
+  &__icons {
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  &__copry {
+    display: flex;
+  }
+}
