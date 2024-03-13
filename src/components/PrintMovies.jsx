@@ -55,22 +55,16 @@ const PrintMovies = () => {
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
-            /*             autoplay={{
+            autoplay={{
               delay: 3000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
-            }} */
+            }}
           >
             {userContext.movies.map((movie) => (
               <SwiperSlide
                 key={movie.id}
                 className="movie-cont__bgimg"
-
-                /*                 style={{
-                  backgroundImage: movie.poster_path
-                    ? `url("${userContext.img + movie.poster_path}")`
-                    : `url("${noAvailabe}")`,
-                }} */
               >
                 <div className="movie-cont__bginfo">
                   <picture>
