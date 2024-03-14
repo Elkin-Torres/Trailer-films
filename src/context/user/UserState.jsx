@@ -7,6 +7,7 @@ import {
   HIDE_DATA,
   DATA_SHEET,
   DATA_SHEET_CLOSE,
+  RESET_NUMBER_PAGES,
   ERROR,
 } from "../types";
 import UserContext from "./UserContext";
@@ -123,6 +124,10 @@ const UserState = (props) => {
     }
   };
 
+  const resetNumberPages = () =>{
+    dispatch({type: RESET_NUMBER_PAGES})
+  }
+
   useEffect(() => {
     callMovies();
   }, []);
@@ -144,6 +149,7 @@ const UserState = (props) => {
         callMovies,
         callTrailer,
         dataSheet,
+        resetNumberPages
       }}
     >
       {props.children}

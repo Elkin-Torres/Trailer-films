@@ -7,6 +7,7 @@ const SearchMovies = () => {
   const userContext = useContext(UserContext);
 
   const searchMovie = (e) => {
+    userContext.resetNumberPages();
     e.preventDefault();
     userContext.callMovies(userContext.requestMovie);
   };

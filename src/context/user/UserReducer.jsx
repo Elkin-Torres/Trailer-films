@@ -1,4 +1,4 @@
-import { CALL_MOVIES, SEARCH_DATA, HIDE_DATA, DATA_SHEET, DATA_SHEET_CLOSE, ERROR} from "../types";
+import { CALL_MOVIES, SEARCH_DATA, HIDE_DATA, DATA_SHEET, DATA_SHEET_CLOSE, RESET_NUMBER_PAGES, ERROR} from "../types";
 
 
 const UserReducer = (state, action) => {
@@ -39,6 +39,11 @@ const UserReducer = (state, action) => {
       return{
         ...state,
         error: payload
+      }
+    case RESET_NUMBER_PAGES:
+      return{
+        ...state,
+        numberPages:[]
       }
     default:
       return state;

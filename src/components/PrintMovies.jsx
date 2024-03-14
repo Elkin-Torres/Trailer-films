@@ -62,10 +62,7 @@ const PrintMovies = () => {
             }}
           >
             {userContext.movies.map((movie) => (
-              <SwiperSlide
-                key={movie.id}
-                className="movie-cont__bgimg"
-              >
+              <SwiperSlide key={movie.id} className="movie-cont__bgimg">
                 <div className="movie-cont__bginfo">
                   <picture>
                     <img
@@ -92,7 +89,10 @@ const PrintMovies = () => {
           </Swiper>
           <div className="movie-cont__numeration-one">
             <p>
-              {userContext.actualPage} / {userContext.numberPages[0]}
+              {userContext.actualPage} /{" "}
+              {userContext.numberPages
+                ? userContext.numberPages[userContext.numberPages.length -1]
+                : userContext.numberPages[0]}
             </p>
           </div>
           <div className="movie-cont__arrows hidden">
@@ -146,7 +146,9 @@ const PrintMovies = () => {
       </div>
       <div className="movie-cont__numeration-two">
         <p>
-          {userContext.actualPage} / {userContext.numberPages[0]}
+          {userContext.actualPage} / {userContext.numberPages
+                ? userContext.numberPages[userContext.numberPages.length -1]
+                : userContext.numberPages[0]}
         </p>
       </div>
     </div>

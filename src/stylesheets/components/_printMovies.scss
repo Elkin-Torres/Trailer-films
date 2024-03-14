@@ -163,17 +163,32 @@
   .movie-cont__list {
     padding: 2rem 20rem;
   }
+
+  .movie-cont__print {
+    min-height: 578px;
+  }
+}
+
+@media screen and (max-width: 2139px) {
 }
 
 @media screen and (max-width: 1420px) {
   .movie-cont__list {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+
+  .movie-cont__print {
+    min-height: 507px;
+  }
 }
 
 @media screen and (max-width: 960px) {
   .movie-cont__list {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .movie-cont__print {
+    min-height: 415px;
   }
 
   .movie-cont__bginfo img {
@@ -191,7 +206,15 @@
   }
 
   .movie-cont__list {
-    padding: 2rem 6rem;
+    padding: 2rem 6rem 2rem 4rem;
+  }
+
+  .movie-cont__print {
+    min-height: 415px;
+  }
+
+  .movie-cont__arrowLeft {
+    left: 1rem;
   }
 
   #root {
